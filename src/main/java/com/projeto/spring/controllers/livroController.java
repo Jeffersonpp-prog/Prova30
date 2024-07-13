@@ -11,26 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projeto.spring.entities.Autor;
-import com.projeto.spring.services.AutorService;
+import com.projeto.spring.entities.Livro;
 import com.projeto.spring.services.LivroService;
 
 @RestController
-@RequestMapping(value="/Livros")
-public class livroController<Livro> {
-	
-	@Autowired
-	private LivroService service;
-	
-	@GetMapping
-	public ResponseEntity<Object> getAll(){
-		Object lista = null;
-		return ResponseEntity.status(HttpStatus.OK).body(lista);
-	}
-	
-	@PostMapping
-	public ResponseEntity<String> saveLivro(@RequestBody Livro livro) {
-		service.saveLivro(livro);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Livro cadastrado");
-	}
+@RequestMapping(value="/livros")
+public class LivroController {
+
+    @Autowired
+    private LivroService service;
+
+    @GetMapping
+    public ResponseEntity<List<Livro>> getAll() {
+        List<Livro> lista = service.getAllLivros(); // Supondo que existe um método getAllLivros na LivroService
+        return ResponseEntity.status(HttpStatus.OK).body(lista);
+    }
+
+    @PostMapping
+    public ResponseEntity<String> saveLivro(@RequestBody Livro livro) {
+        service.saveLivro(livro);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Livro cadastrado com sucesso.");
+    }
 }

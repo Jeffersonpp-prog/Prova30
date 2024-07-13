@@ -13,6 +13,7 @@ public class Autor {
 private Long id;
 private String titulo;
 private Autor autor;
+
 public Long getId() {
 	return id;
 }

@@ -2,11 +2,10 @@ package com.projeto.spring.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projeto.spring.entities.Autor;
-import com.projeto.spring.repository.AutorRepository;
+import com.projeto.spring.repositories.AutorRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -14,16 +13,19 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class AutorService {
 
-    @Autowired
-    private AutorRepository autorRepository;
+    private final AutorRepository autorRepository = null;
 
     public List<Autor> getAll() {
         return autorRepository.findAll();
     }
 
-    public void saveAutor (Autor autor) {
-        autorRepository.save(autor);
+    public Autor saveAutor(Autor autor) {
+        return autorRepository.save(autor);
     }
 
-    }
+	public List<Autor> getAllAutores() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
 

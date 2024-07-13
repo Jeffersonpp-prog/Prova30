@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projeto.spring.entities.Livro;
+import com.projeto.spring.repository.LivroRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -13,15 +14,14 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class LivroService {
 
-	@Autowired
-	private LivroRepository LivroRepository;
-	
-	public List<Livro> getAllLivros() {
-		return LivroRepository.findALL();
-		}
-	
-	public void saveLivro(Livro livro) {
-		LivroRepository.save(livro);
-	}
-	
-	}
+    @Autowired
+    private LivroRepository livroRepository; // Usar camel case para o nome da variável
+
+    public List<Livro> getAllLivros() {
+        return livroRepository.findAll(); // Corrigido para findAll()
+    }
+
+    public Livro saveLivro(Livro livro) {
+        return livroRepository.save(livro); // Retorna o Livro salvo
+    }
+}
